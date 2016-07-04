@@ -25,5 +25,8 @@ setup(
     ],
     install_requires=[
         'Django>=1.9,<2.0',
+        'kombu>=3.0,<4.0',
+        'apns-clerk>=0.2,<0.3',
+        'python-gcm>=0.4,<0.5',
     ],
 )
