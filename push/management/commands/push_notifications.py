@@ -46,7 +46,7 @@ class Command(BaseCommand):
                         connection.drain_events(
                             timeout=settings.PUSH_WORKER_WAIT_TIMEOUT,
                         )
-                except socket.timeout:
+                except (socket.timeout, KeyboardInterrupt):
                     pass
                 finally:
                     notification.apns_session.shutdown()
