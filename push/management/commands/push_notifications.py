@@ -48,5 +48,3 @@ class Command(BaseCommand):
                         )
                 except (socket.timeout, KeyboardInterrupt):
                     pass
-                finally:
-                    notification.apns_session.shutdown()

@@ -12,8 +12,6 @@ apns_logger = logging.getLogger('push.notifications.apns')
 
 fcm_logger = logging.getLogger('push.notifications.fcm')
 
-apns_session = apns.Session()
-
 
 class Notification:
 
@@ -42,8 +40,12 @@ class Notification:
         ).delete()
 
     @cached_property
+    def apns_session(self):
+        return apns.Session()
+
+    @property
     def apns(self):
-        return apns.APNs(apns_session.get_connection(**settings.PUSH_APNS))
+        return apns.APNs(self.apns_session.get_connection(**settings.PUSH_APNS))
 
     @cached_property
     def fcm(self):
