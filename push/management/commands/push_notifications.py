@@ -30,11 +30,7 @@ class Command(BaseCommand):
                 message.ack()
 
     def handle(self, **options):
-        # notification = Notification(
-        #     tokens='tokens',
-        #     device_os=DeviceOS.iOS,
-        # )
-        # notification.send()
+
         logger.debug('Started listening PUSH notifications queues')
         with amqp.connection as connection:
             with connection.Consumer(

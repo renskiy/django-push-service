@@ -26,7 +26,7 @@ class Notification:
             tokens=self.tokens,
             device_os=self.device_os.value,
             alert=self.alert,
-            extra=self.extra,
+            **self.extra,
         )
 
     @property
@@ -109,7 +109,7 @@ class Notification:
         )
 
         for notification_result in operation_result.get('results', ()):
-            error = notification_result('error')
+            error = notification_result.get('error')
             if error:
                 fcm_logger.error(
                     'PUSH notification was not sent, reason: %s',
