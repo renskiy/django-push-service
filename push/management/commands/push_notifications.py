@@ -6,8 +6,7 @@ import kombu.message
 
 from django.core.management.base import BaseCommand
 
-from push import settings, amqp
-from push.notification import Notification
+from push import settings, amqp, notification
 
 logger = logging.getLogger('push.notifications')
 
@@ -21,15 +20,14 @@ class Command(BaseCommand):
             len(message.body),
         )
         try:
-            notification = Notification(**body)
+            push_notification = notification.Notification(**body)
         except (ValueError, TypeError):
             logger.error('Skipped invalid AMQP message body: %s', body)
         else:
             try:
-                notification.send_immediately()
-            except:
-                logger.exception('Notification was not sent due to error')
-        message.ack()
+                push_notification.send_immediately()
+            finally:
+                message.ack()
 
     def handle(self, **options):
         # notification = Notification(
@@ -50,3 +48,5 @@ class Command(BaseCommand):
                         )
                 except socket.timeout:
                     pass
+                finally:
+                    notification.apns_session.shutdown()
