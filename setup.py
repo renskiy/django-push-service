@@ -5,16 +5,17 @@ with open('README.rst') as description:
     long_description = description.read()
 
 setup(
-    name='django-push',
+    name='django-notifications',
     version='0.1',
     author='Rinat Khabibiev',
     author_email='srenskiy@gmail.com',
-    packages=list(map('push.'.__add__, find_packages('push'))) + ['push'],
+    packages=list(map('django_notifications.'.__add__, find_packages('django_notifications'))) + ['django_notifications'],
     url='https://github.com/renskiy/django-push',
     license='MIT',
     description='fabricio',
     long_description=long_description,
     classifiers=[
+        # https://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Topic :: Communications',

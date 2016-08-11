@@ -4,7 +4,7 @@ from django.apps import apps
 from django.conf import settings as django_settings
 from django.db import models
 
-from push import settings
+from django_notifications import settings
 
 
 class DeviceOS(Enum):
@@ -37,7 +37,7 @@ class Device(DeviceBase):
 
 
 def get_device_model() -> DeviceBase:
-    return apps.get_model(settings.PUSH_DEVICE_MODEL)
+    return apps.get_model(settings.DJANGO_NOTIFICATIONS_DEVICE_MODEL)
 
 
 def update_push_token(push_token, device_os, user=None, device_locale='', **extra):
