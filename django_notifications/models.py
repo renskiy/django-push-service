@@ -33,7 +33,7 @@ class DeviceBase(models.Model):
 class Device(DeviceBase):
 
     class Meta:
-        swappable = 'PUSH_DEVICE_MODEL'
+        swappable = 'DJANGO_NOTIFICATIONS_DEVICE_MODEL'
 
 
 def get_device_model() -> DeviceBase:
