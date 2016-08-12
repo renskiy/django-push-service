@@ -1,3 +1,3 @@
 import logging
 
-logger = logging.getLogger('django_notifications.push.apns.feedback')
+logger = logging.getLogger('django_push.apns.feedback')

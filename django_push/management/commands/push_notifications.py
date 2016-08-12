@@ -8,7 +8,7 @@ from django.core.management.base import BaseCommand
 
 from django_push import settings, amqp, notification
 
-logger = logging.getLogger('django_notifications.push')
+logger = logging.getLogger('django_push')
 
 
 class Command(BaseCommand):

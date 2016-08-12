@@ -8,9 +8,9 @@ from kombu.pools import producers
 
 from django_push import settings, models, amqp
 
-apns_logger = logging.getLogger('django_notifications.push.apns')
+apns_logger = logging.getLogger('django_push.apns')
 
-fcm_logger = logging.getLogger('django_notifications.push.fcm')
+fcm_logger = logging.getLogger('django_push.fcm')
 
 
 class PushNotification:
