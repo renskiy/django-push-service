@@ -17,7 +17,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django_notifications',
+    'django_push',
 ]
 
 MIDDLEWARE_CLASSES = []

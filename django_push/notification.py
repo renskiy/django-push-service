@@ -6,7 +6,7 @@ import pyfcm as fcm
 from django.utils.functional import cached_property
 from kombu.pools import producers
 
-from django_notifications import settings, models, amqp
+from django_push import settings, models, amqp
 
 apns_logger = logging.getLogger('django_notifications.push.apns')
 
@@ -15,7 +15,7 @@ fcm_logger = logging.getLogger('django_notifications.push.fcm')
 
 class PushNotification:
 
-    def __init__(self, *, tokens, device_os, alert=None, **extra):
+    def __init__(self, tokens, device_os, alert=None, **extra):
         self.tokens = tokens
         self.device_os = models.DeviceOS(device_os)
         self.alert = alert
@@ -45,11 +45,11 @@ class PushNotification:
 
     @property
     def apns(self):
-        return apns.APNs(self.apns_session.get_connection(**settings.DJANGO_NOTIFICATIONS_APNS))
+        return apns.APNs(self.apns_session.get_connection(**settings.DJANGO_PUSH_APNS))
 
     @cached_property
     def fcm(self):
-        return fcm.FCMNotification(**settings.DJANGO_NOTIFICATIONS_FCM)
+        return fcm.FCMNotification(**settings.DJANGO_PUSH_FCM)
 
     def send(self):
         with producers[amqp.connection].acquire(block=True) as producer:

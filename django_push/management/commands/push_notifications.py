@@ -6,7 +6,7 @@ import kombu.message
 
 from django.core.management.base import BaseCommand
 
-from django_notifications import settings, amqp, notification
+from django_push import settings, amqp, notification
 
 logger = logging.getLogger('django_notifications.push')
 
@@ -40,7 +40,7 @@ class Command(BaseCommand):
                 try:
                     while True:
                         connection.drain_events(
-                            timeout=settings.DJANGO_NOTIFICATIONS_WORKER_WAIT_TIMEOUT,
+                            timeout=settings.DJANGO_PUSH_WORKER_WAIT_TIMEOUT,
                         )
                 except (socket.timeout, KeyboardInterrupt):
                     pass
