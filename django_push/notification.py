@@ -114,10 +114,12 @@ class PushNotification:
         )
 
         for operation_response in operation_responses:
-            notification_result = operation_response.get('results', dict())
-            error = notification_result.get('error')
-            if error:
-                fcm_logger.error(
-                    'PUSH notification was not sent, reason: %s',
-                    error,
-                )
+            notification_results = operation_response.get('results', ())
+
+            for notification_result in notification_results:
+                error = notification_result.get('error')
+                if error:
+                    fcm_logger.error(
+                        'PUSH notification was not sent, reason: %s',
+                        error,
+                    )
